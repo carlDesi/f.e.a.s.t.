@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    border-radius: 3%;
+    margin: 0 auto;
+    width: 60%;
+    height: max-content;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+.form-container{
+    margin-left: auto;
+}
+.class_code {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    width: 200px;
+    height:30px;
+}
+.add_class {
+    border: none;
+    width: 30px;
+    height: 30px;
+}
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 18px;
+    transition-duration: 0.4s;
+  }
+  
+  /* Style the active class, and buttons on mouse-over */
+.btn.active, .btn:hover {
+    background-color: #666;
+    color: white;
+  }
+textarea {
+    width: 300px;
+    height: 100px;
+    resize: none;
+}
+
+.Submit_Button {
+    border: none;
+    height: 50px;
+    width: 100px;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    transition: 0.2s;
+}
+.Submit_Button:hover {
+    background-color: #666;
+    color: white;
+}

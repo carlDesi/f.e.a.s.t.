@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'teachermaincss.css' %}"></link>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.add_room').click(function(e) {
+                e.preventDefault();
+                var roomName = $('#room_name').val();
+                if (roomName) {
+                    $.ajax({
+                        url: '/teacher_main/',
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val()
+                        },
+                        data: {
+                            name: roomName
+                        },
+                        success: function(data) {
+                            // create a new div and button element for the new room
+                            var newRoom = $('<div>').addClass('container').appendTo('.center-panel');
+                            var newButton = $('<button>').text(roomName).addClass('btn').appendTo(newRoom);
+
+                            // clear the room_name input
+                            $('.room_name').val('');
+                        }
+                    });
+                }
+            });
+            $('.btn').click(function() {
+                var roomName = $(this).text(); // Get the room name from the button text
+                var roomCode = $(this).data('code'); // Get the room code from the data attribute
+                var roomInfo = $('#room-info'); // Get the room info div
+                roomInfo.html(`<div>Room Name: ${roomName}</div><div>Room Code: ${roomCode}</div>`); // Update room info
+                
+                $('.add-sub-room-btn').show();
+
+                const subRoomBtn = $('.add-sub-room-btn')
+                subRoomBtn.on('click', function() {
+                    // Handle sub-room button click event
+                    console.log(`Sub room added to ${roomName} with code ${roomCode}`);
+
+                    // Create a new sub-room button element
+                    const newSubRoomBtn = $('<button>').text('Sub Room').addClass('sub-room-btn').data('roomCode', roomCode);
+
+                    // Add a click event handler to the new sub-room button
+                    newSubRoomBtn.on('click', function() {
+                        // Handle sub-room button click event
+                        console.log(`Sub room button clicked for ${roomName} with code ${roomCode}`);
+                    // Create a new dropdown div for adding users
+                    const newUserDropdown = $('<div>').addClass('user-dropdown').appendTo('.sub-rooms-container');
+
+                        // Add a title to the dropdown div
+                        const dropdownTitle = $('<div>').text(`Add Users to ${roomName} (${roomCode})`).addClass('dropdown-title').appendTo(newUserDropdown);
+
+                        // Add a close button to the dropdown div
+                        const closeBtn = $('<button>').text('X').addClass('close-btn').appendTo(newUserDropdown);
+
+                        // Add a click event handler to the close button
+                        closeBtn.on('click', function() {
+                            // Handle close button click event
+                            newUserDropdown.remove();
+                        });
+
+                        // Add a form for adding users to the dropdown div
+                        const newUserForm = $('<form>').appendTo(newUserDropdown);
+
+                        // Add a label for the user email input to the form
+                        const userEmailLabel = $('<label>').text('User Email:').appendTo(newUserForm);
+
+                        // Add a input for the user email to the form
+                        const userEmailInput = $('<input>').attr('type', 'email').addClass('user-email-input').appendTo(newUserForm);
+
+                        // Add a submit button to the form
+                        const userEmailSubmit = $('<button>').text('Add User').addClass('user-email-submit').appendTo(newUserForm);
+
+                        // Add a click event handler to the submit button
+                        userEmailSubmit.on('click', function(e) {
+                            e.preventDefault();
+
+                            // Get the user email from the input
+                            const userEmail = userEmailInput.val();
+
+                            // Clear the user email input
+                            userEmailInput.val('');
+
+                            // Handle user email submit event
+                            console.log(`User ${userEmail} added to ${roomName} with code ${roomCode}`);
+                        
+                            // Create a new table row for the user
+                            const newUserRow = $('<tr>').appendTo('.user-table');
+
+                            // Add a table data element for the user email to the row
+                            const userEmailTd = $('<td>').text(userEmail).appendTo(newUserRow);
+
+                            // Add a table data element for the user score to the row
+                            const userScoreTd = $('<td>').text('0').appendTo(newUserRow);
+                        
+                        
+                        });
+                    });
+
+                    // Add the new sub-room button to the sub-rooms container
+                    $('.sub-rooms-container').append(newSubRoomBtn);
+                });
+
+                // Add the sub-room button to the sub-rooms container
+                $('.sub-rooms-container').append(subRoomBtn);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="panel left-panel">
+    <div class="panel-header">Left Panel</div>
+    </div>
+
+    <div class="panel center-panel">
+        {% for room in rooms %}
+        <div class="container">
+            <button type="button" class = "btn" data-code={{room.code}}>{{ room.name }}</button>
+        </div>
+        {% endfor %}
+        <form action="/teacher_main/" method="post">
+        {% csrf_token %}
+        <div class="container2">
+            <input type="text" id="room_name" class="room_name" placeholder="Insert Room Name" autocomplete="off" required>
+            <button type="submit" class="add_room">+</button>
+        </div>
+        </form>
+    </div>
+
+    <div class="panel right-panel">
+        <div class="panel-header">Right Panel</div>
+        <div id="room-info">Room info here</div>
+        <button class="add-sub-room-btn" style="display: none;">Add Sub Rooms</button>
+        <div class="sub-rooms-container"></div>
+        <p> USERS </p>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>User |</th>
+                    <th>| Score</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+  </div>
+    </div>
+</body>
+</html>

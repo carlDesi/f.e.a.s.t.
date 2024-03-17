@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>FEAST</h1>
+    <form action="/login/" method="post">
+        {% csrf_token %}
+        <label for="">Email</label>
+        <input type="text" id="email" name="email" placeholder="Input your email" Required></input>
+
+        <label for="">Password</label>
+        <input type="text" id="password" name="password" placeholder="Input your password" Required></input>
+
+        <button type="submit">Log in</RTbutton>   
+    </form>
+</body>
+</html> 

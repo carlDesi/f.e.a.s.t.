@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>PEER EVALUATION</title>
+    <link rel="stylesheet" href="{% static 'maincss.css' %}"></link>
+  </head>
+  <body style="background-color:#f4f4f4;">
+    <div class="container">
+    <h1>PEER EVALUATION</h1>
+    <div class="form-container">
+      <!-- <form action="{% url 'teacher_main' %}" method="get">
+        {% csrf_token %}
+        <input type="text" id="class_code" class="class_code" placeholder="Input class code" value="f749e357-a0f4-4f75-85cd-b07783d6cec8">
+        <button type="submit" class="add_class">+</button>
+      </form> -->
+          <label for="class">Class:</label>
+          <select id="class" name="class">
+            <option value="">-- Select a class --</option>
+            <option value="4">Class 1</option>
+            <option value="5">Class 2</option>
+            <option value="6">Class 3</option>
+          </select>
+          <label for="teammates">Groupmate:</label>
+          <select id="teammates" name="teammates">
+            <option value="">-- Select a groupmate to rate --</option>
+            <option value="4">Groupmate 1</option>
+            <option value="5">Groupmate 2</option>
+            <option value="6">Groupmate 3</option>
+          </select>
+      </div>
+    
+    <p class="page-header">How would you rate the OVERALL PERFORMANCE of your GROUPMATE in completing the group Milestone Tasks? </p>
+    <p class="page-header">After you have carefully read the guidelines above, you may use the overall rating scale below in assessing your groupmate's contribution to the group</p>
+    <p class="page-header">0: liability to the group; 1: poor and uninterested work; 2: fair work; 3: good work; 4: very good work; 5: indespenseble in completing the task</p>
+    <div id="questions">
+        <button class="btn active">0</button>
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+    <script src="{% static 'mainscript.js' %}"></script>  
+    <p class="page-header">Please provide comments and constructive feedback for your GROUPMATE in the space provided below.</p>
+    <form id="open-ended-question">
+        <label for="feedback">Your answer:</label><br>
+        <textarea id="feedback" name="feedback"></textarea>
+        <br>
+  
+        <input type="submit" value="Submit" class="Submit_Button" onclick="return checkSelection()">
+    </form>
+    </div>
+    </div>
+  </body>
+</html>
