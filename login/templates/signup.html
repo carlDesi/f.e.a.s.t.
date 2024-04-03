@@ -1,18 +1,33 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
+    <head>
+        <title>Signup</title>
+        <link rel="stylesheet" href="{% static 'signupcss.css' %}"></link>
+    </head>
 <body>
-
-    <h1>FEAST</h1>
+    <div class="maincontainer">
+    <div class="signupcontainer">
+    <h1 class="logotext">FEAST</h1>
     <form action="/signup/" method="post">
         {% csrf_token %}
-        <label for="">Email</label>
-        <input type="text" id="email" name="email" placeholder="Input your email" Required></input>
+        <input class="emailbox" type="text" id="email" name="email" placeholder="Email" Required></input><br>
         <!-- martha@teacher.edu | 8901234abc -->
         <!-- john@student.edu | 3213pok246-->
-        <label for="">Password</label>
-        <input type="text" id="password" name="password" placeholder="Input your password" Required></input>
-
-        <button type="submit">Sign Up</button>   
+        <!-- lois@teacher.edu | 8901234abc -->
+        <!-- clark@student.edu | 3213pok246-->
+        <input class="passwordbox" type="text" id="password" name="password" placeholder="Password" Required></input><br>
+        <div class ="statusbox">
+            <select class="status" id="status" name="status" Required>
+                <option value="student" selected>Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit" class="signupbutton">Sign Up</button> 
+        <div class ="loginlink">
+                <p>Already have an account? <a href="{% url 'loginpage' %}" style="color:#0a55f5">Login<a></p>
+                </div>  
     </form>
 
 </body>

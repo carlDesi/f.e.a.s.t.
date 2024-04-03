@@ -1,17 +1,33 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
+<head>
+    <title>Login</title>
+    <script>
+        function showAlert(message) {
+            alert(message);
+        }
+    </script>
+<link rel="stylesheet" href="{% static 'logincss.css' %}"></link>
+</head>
 <body>
-
-    <h1>FEAST</h1>
-    <form action="/login/" method="post">
-        {% csrf_token %}
-        <label for="">Email</label>
-        <input type="text" id="email" name="email" placeholder="Input your email" Required></input>
-
-        <label for="">Password</label>
-        <input type="text" id="password" name="password" placeholder="Input your password" Required></input>
-
-        <button type="submit">Log in</RTbutton>   
-    </form>
+    <div class="maincontainer">
+    <div class="logincontainer">
+        <h1 class="logotext">FEAST</h1>
+        <form action="/login/" method="post">
+            {% csrf_token %}
+            <input type="text" id="email" name="email" placeholder="Email" Required class="emailbox"></input><br>
+            <input type="text" id="password" name="password" placeholder="Password" Required class="passwordbox"></input>
+            <br>
+            {% if error %}
+            <script>showAlert('{{ error }}');</script>
+            {% endif %}
+            <button type="submit" class="loginbutton">Log in</button> 
+            <div class ="signuplink">
+                <p>Don't have an account? <a href="{% url 'signup' %}" style="color:#0a55f5">Sign Up<a></p>
+                </div>
+        </form>
+</div>
+</div>
 </body>
 </html> 

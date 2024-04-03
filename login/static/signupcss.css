@@ -1,0 +1,81 @@
+body {
+    background-color: rgb(37, 95, 182);
+}
+.maincontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.signupcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 55%;
+    height: 870px;
+    background-color: white;
+    border-radius: 30px;
+    position: relative; /* add this line */
+}
+.logotext {
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute; /* add this line */
+    top: 200px; /* adjust this value to move the logotext up or down */
+    left: 50%; /* center the logotext horizontally */
+    transform: translateX(-50%); /* center the logotext horizontally */
+    font-size: 2rem; /* adjust the font size as needed */
+    text-align: center; /* center the text horizontally */
+}
+.emailbox {
+    margin: 7px;
+    height: 40px;
+    width: 350px;
+    border-radius: 7px;
+    border-width: 1px;
+    border-color: gray;
+    padding-left: 20px;
+}
+.passwordbox {
+    margin: 7px;
+    height: 40px;
+    width: 350px;
+    border-radius: 7px;
+    border-width: 1px;
+    border-color: rgb(100, 100, 100);
+    padding-left: 20px;
+}
+.statusbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.status {
+    background-color: white;
+    border-color:#0a55f5;
+    color: #0a55f5;
+    border-radius: 7px;
+    height: 40px;
+    width: 300px;
+    margin-top: 10px;
+    padding-left: 15px;
+    appearance: none;
+}
+
+
+
+.signupbutton {
+    margin-left: 7px;
+    margin-top: 40px;
+    height: 40px;
+    width: 370px;
+    border-radius: 7px;
+    border-width: 0;
+    background-color: #0a55f5;
+    color: white;
+}
+.loginlink {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

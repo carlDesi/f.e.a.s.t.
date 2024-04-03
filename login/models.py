@@ -3,11 +3,20 @@ from django.contrib.auth.models import User
 import uuid
 
 # Create your models here.
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, blank=True)
+
 def getUsers():
     users = User.objects.all()
-    print ("Username : Password : Email")
+    print ("Username : Password : Email : Status")
+    # for user in users:
+        # print(user.username + " : " + user.password + " : " + user.email + " : " + user.status)
+def deleteUsers():
+    users = User.objects.all()
     for user in users:
         print(user.username + " : " + user.password + " : " + user.email)
+    users.delete()
 
 class Room(models.Model):
     name = models.CharField(max_length=255)
@@ -29,8 +38,15 @@ def getRooms():
     for room in rooms:
         print(room.name + str(room.code))
 
-getRooms()
+def getUserProfiles():
+    users = UserProfile.objects.all()
+    for user in users:
+        print("Username : Password : T/S")
+        print(str(user.user.username) + " : " + str(user.user.password) + " : " + str(user.status))
 
+
+getUserProfiles()
+# deleteUsers()
 #to delete items from database:
 # # from login.models import Room
 # # Room.objects.all().delete()

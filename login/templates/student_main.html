@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{% static 'maincss.css' %}"></link>
   </head>
   <body style="background-color:#f4f4f4;">
+    <form method="post">
+      {% csrf_token %}
+      <button class="logoutbutton" type="submit" name="logout">Logout</button>
+    </form>
     <div class="container">
     <h1>PEER EVALUATION</h1>
     <div class="form-container">
