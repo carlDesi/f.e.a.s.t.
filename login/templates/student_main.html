@@ -13,18 +13,22 @@
     <div class="container">
     <h1>PEER EVALUATION</h1>
     <div class="form-container">
-      <!-- <form action="{% url 'teacher_main' %}" method="get">
+      <form action="/student_main/" method="post">
         {% csrf_token %}
-        <input type="text" id="class_code" class="class_code" placeholder="Input class code" value="f749e357-a0f4-4f75-85cd-b07783d6cec8">
+        <input type="text" id="class_code" class="class_code" name="class_code" placeholder="Input class code">
         <button type="submit" class="add_class">+</button>
-      </form> -->
+      </form>
+      <form method="post">
+        {% csrf_token %}
+        <!--<input type="text" name="room_name_for_removal"></input>
+        <button type="submit" name="remove_all_rooms">Remove all rooms</button>-->
+      </form>
           <label for="class">Class:</label>
           <select id="class" name="class">
-            <option value="">-- Select a class --</option>
-            <option value="4">Class 1</option>
-            <option value="5">Class 2</option>
-            <option value="6">Class 3</option>
-          </select>
+            {% for value, name in class_options %}
+              <option value="{{ value }}">{{ name }}</option>
+            {% endfor %}
+          </select> 
           <label for="teammates">Groupmate:</label>
           <select id="teammates" name="teammates">
             <option value="">-- Select a groupmate to rate --</option>
